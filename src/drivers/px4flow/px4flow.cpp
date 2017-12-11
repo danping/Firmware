@@ -88,7 +88,8 @@
 /* PX4FLOW Registers addresses */
 #define PX4FLOW_REG			0x16	///< Measure Register 22
 
-#define PX4FLOW_CONVERSION_INTERVAL_DEFAULT 100000	///< in microseconds! = 10Hz
+//#define PX4FLOW_CONVERSION_INTERVAL_DEFAULT 100000	///< in microseconds! = 10Hz
+#define PX4FLOW_CONVERSION_INTERVAL_DEFAULT 25000	///< in microseconds! = 40Hz  
 #define PX4FLOW_CONVERSION_INTERVAL_MIN      10000	///< in microseconds! = 100 Hz
 #define PX4FLOW_CONVERSION_INTERVAL_MAX    1000000	///< in microseconds! = 1 Hz
 
@@ -761,8 +762,11 @@ start(int argc, char *argv[])
 #ifdef PX4_I2C_BUS_ESC
 			PX4_I2C_BUS_ESC,
 #endif
+#ifdef PX4_I2C_BUS_EXPANSION1
+       PX4_I2C_BUS_EXPANSION1,
+#endif
 #ifdef PX4_I2C_BUS_ONBOARD
-			PX4_I2C_BUS_ONBOARD,
+	   PX4_I2C_BUS_ONBOARD,
 #endif
 			-1
 		};
@@ -771,7 +775,7 @@ start(int argc, char *argv[])
 
 		while (*cur_bus != -1) {
 			/* create the driver */
-			/* warnx("trying bus %d", *cur_bus); */
+			warnx("trying bus %d", *cur_bus);
 			g_dev = new PX4FLOW(*cur_bus, address, (enum Rotation)0, conversion_interval, sonar_rotation);
 
 			if (g_dev == nullptr) {
@@ -819,7 +823,7 @@ start(int argc, char *argv[])
 
 		if (retry_nr < START_RETRY_COUNT) {
 			/* lets not be too verbose */
-			// warnx("PX4FLOW not found on I2C busses. Retrying in %d ms. Giving up in %d retries.", START_RETRY_TIMEOUT, START_RETRY_COUNT - retry_nr);
+			warnx("PX4FLOW not found on I2C busses. Retrying in %d ms. Giving up in %d retries.", START_RETRY_TIMEOUT, START_RETRY_COUNT - retry_nr);
 			usleep(START_RETRY_TIMEOUT * 1000);
 			retry_nr++;
 

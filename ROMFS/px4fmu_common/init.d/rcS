@@ -708,6 +708,7 @@ then
 	if ver hwcmp AEROFC_V1
 	then
 		# don't start mavlink ttyACM0 on aerofc_v1
+		px4flow start & # added by Danping Zou
 	else
 		# Start MAVLink
 		mavlink start -r 800000 -d /dev/ttyACM0 -m config -x

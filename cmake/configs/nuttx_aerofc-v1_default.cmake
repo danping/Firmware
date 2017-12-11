@@ -19,7 +19,8 @@ set(config_module_list
 	drivers/hmc5883
 	drivers/gps
 	drivers/ist8310
-	drivers/ll40ls
+#	drivers/ll40ls #LidarLiteI2C removed by Danping Zou
+	drivers/px4flow #add by Danping Zou
 	drivers/aerofc_adc
 	modules/sensors
 
