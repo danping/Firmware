@@ -261,7 +261,7 @@ then
 
 	ist8310 -C -b 1 -R 4 start
 	aerofc_adc start
-	ll40ls start i2c
+	#ll40ls start i2c
 fi
 
 if ver hwcmp PX4FMU_V4PRO

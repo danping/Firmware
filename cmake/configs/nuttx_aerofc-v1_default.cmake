@@ -18,7 +18,8 @@ set(config_module_list
 	drivers/hmc5883
 	drivers/gps
 	drivers/ist8310
-	drivers/ll40ls
+	#drivers/ll40ls removed by Danping Zou
+        drivers/px4flow #added by Danping Zou
 	drivers/aerofc_adc
 	modules/sensors
 

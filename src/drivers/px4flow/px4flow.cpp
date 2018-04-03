@@ -88,7 +88,9 @@
 /* PX4FLOW Registers addresses */
 #define PX4FLOW_REG			0x16	///< Measure Register 22
 
-#define PX4FLOW_CONVERSION_INTERVAL_DEFAULT 100000	///< in microseconds! = 10Hz
+//commented out Danping
+//#define PX4FLOW_CONVERSION_INTERVAL_DEFAULT 100000	///< in microseconds! = 10Hz
+#define PX4FLOW_CONVERSION_INTERVAL_DEFAULT 25000	///< in microseconds! = 40Hz
 #define PX4FLOW_CONVERSION_INTERVAL_MIN      10000	///< in microseconds! = 100 Hz
 #define PX4FLOW_CONVERSION_INTERVAL_MAX    1000000	///< in microseconds! = 1 Hz
 
@@ -750,6 +752,10 @@ start(int argc, char *argv[])
 			PX4_I2C_BUS_EXPANSION,
 #ifdef PX4_I2C_BUS_ESC
 			PX4_I2C_BUS_ESC,
+#endif
+//Added by Danping
+#ifdef PX4_I2C_BUS_EXPANSION1
+                        PX4_I2C_BUS_EXPANSION1,
 #endif
 #ifdef PX4_I2C_BUS_ONBOARD
 			PX4_I2C_BUS_ONBOARD,
